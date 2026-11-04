@@ -1,0 +1,20 @@
+{
+  "name": "dsh-session-title-dated",
+  "version": "0.1.0",
+  "description": "DSH plugin: session titles in the form YYYY-MM-DD 分类：简短描述, with an on-demand set_session_title agent tool and dynamic categories.",
+  "type": "module",
+  "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "install.sh",
+    "uninstall.sh",
+    "README.md"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "session-title"
+  ],
+  "license": "MIT"
+}
