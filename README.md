@@ -90,10 +90,44 @@ git clone https://github.com/beijingrong/dsh-dated-session-titles
 ## 开发
 
 ```bash
-npm test        # node test/naming.test.mjs
+npm test                       # 单元测试
+npm pack --dry-run             # 看会发布哪些文件、多大
 ```
 
 测试覆盖日期计算、模型输出解析（JSON / 整行 / 裸行 / 带括号）、长度截断、消息选择与输入字节预算、配置覆盖，以及 `set_session_title` 的改名拼装。
+
+### 本地迭代
+
+插件以 bundle 形式链接安装时，改完代码重新装一次就生效，不用重启 DSH：
+
+```bash
+# 让 agent 执行，或在 Web 插件页先卸载再装本地目录
+plugin_manager remove_bundle  dsh-dated-session-titles
+plugin_manager install_bundle /abs/path/to/dsh-dated-session-titles
+```
+
+想验证实际标题效果，起一个子会话聊两句即可——每条用户消息后都会重新命名。
+
+### 发版清单
+
+```bash
+npm test                                  # 1. 测试全绿
+npm pack --dry-run                        # 2. 确认发布内容（8 个文件左右）
+npm version patch --no-git-tag-version    # 3. 升版本（minor / major 同理）
+git add -A && git commit -m "0.2.x: ..."  # 4. 提交
+git tag -a v0.2.x -m "0.2.x: ..."         # 5. 打标签
+git push origin main --follow-tags        # 6. 推送代码和标签
+npm login                                 # 7. 首次发布需登录
+npm publish                               # 8. 发布（无 scope 包默认 public）
+npm view dsh-dated-session-titles version # 9. 确认线上版本
+```
+
+几点约束：
+
+- **同版本号不能覆盖发布**，任何改动都要先升版本；
+- 市场收录看 `package.json` 的 `repository`（指回本仓库）和 `engines.dsh`，两个字段别手滑删掉；
+- dshfind 每天扫一次 npm，发布后到出现在 Discover 里可能隔一天，不需要手动提交；
+- `version` 字段同时决定 npm 版本和 `plugin_manager` 显示的可升级版本，别只改 tag 不改 `package.json`。
 
 ## 许可
 
