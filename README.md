@@ -1,4 +1,4 @@
-# dsh-session-title-dated
+# dsh-dated-session-titles
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的会话标题加上日期和分类：
 
@@ -28,7 +28,7 @@
 ## 安装
 
 ```bash
-git clone https://github.com/beijingrong/dsh-session-title-dated
+git clone https://github.com/beijingrong/dsh-dated-session-titles
 ```
 
 然后在 DSH 里任选一种：

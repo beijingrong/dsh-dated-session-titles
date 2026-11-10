@@ -6,7 +6,7 @@
 
 - insert:
     - id: session-title-dated
-      name: 'dsh-session-title-dated'
+      name: 'dsh-dated-session-titles'
       config:
         automatic: all-prompts
         datePrefix: true

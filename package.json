@@ -1,6 +1,6 @@
 {
-  "name": "dsh-session-title-dated",
-  "version": "0.2.0",
+  "name": "dsh-dated-session-titles",
+  "version": "0.2.1",
   "description": "DSH bundle: session titles shaped YYYY-MM-DD 分类：简短描述, with categories chosen from the conversation and an on-demand set_session_title tool.",
   "type": "module",
   "main": "index.js",
@@ -34,5 +34,14 @@
     "bundle": {
       "patch": "./cordis.patch.yml"
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beijingrong/dsh-dated-session-titles.git"
+  },
+  "homepage": "https://github.com/beijingrong/dsh-dated-session-titles#readme",
+  "bugs": {
+    "url": "https://github.com/beijingrong/dsh-dated-session-titles/issues"
+  },
+  "author": "Yirong Xu (https://github.com/beijingrong)"
 }
