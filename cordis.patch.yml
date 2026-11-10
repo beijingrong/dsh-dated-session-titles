@@ -1,0 +1,28 @@
+# The dated-session-title bundle patch.
+#
+# It inserts the naming provider, retires the shipped first-prompt LLM provider
+# (the session-title service accepts one provider at a time), and widens the
+# accepted title length so `YYYY-MM-DD 分类：简短描述` fits.
+
+- insert:
+    - id: session-title-dated
+      name: 'dsh-session-title-dated'
+      config:
+        automatic: all-prompts
+        datePrefix: true
+        targetCjkCharacters: 8
+        maxCjkCharacters: 10
+        maxInputBytes: 8192
+        maxOutputTokens: 1500
+        timeoutMs: 45000
+        maxMessages: 6
+        messageCharLimit: 600
+
+- id: session-title-llm
+  disabled: true
+
+- id: session-title
+  config:
+    fallbackMaxWords: 5
+    fallbackMaxBytes: 40
+    maxTitleBytes: 120

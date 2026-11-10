@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Dated session titles",
+    "description": "Names sessions as 「YYYY-MM-DD category：short summary」, with categories chosen from the conversation and an on-demand set_session_title tool."
+  }
+}

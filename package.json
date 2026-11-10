@@ -1,20 +1,38 @@
 {
   "name": "dsh-session-title-dated",
-  "version": "0.1.0",
-  "description": "DSH plugin: session titles in the form YYYY-MM-DD 分类：简短描述, with an on-demand set_session_title agent tool and dynamic categories.",
+  "version": "0.2.0",
+  "description": "DSH bundle: session titles shaped YYYY-MM-DD 分类：简短描述, with categories chosen from the conversation and an on-demand set_session_title tool.",
   "type": "module",
-  "main": "index.mjs",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
   "files": [
-    "index.mjs",
-    "install.sh",
-    "uninstall.sh",
+    "index.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
     "README.md"
   ],
   "keywords": [
     "dsh",
     "dsh-plugin",
+    "dsh-bundle",
     "deepseek-harness",
     "session-title"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "dsh": ">=0.2.1-rc.2 <0.3.0"
+  },
+  "scripts": {
+    "test": "node test/naming.test.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
 }
