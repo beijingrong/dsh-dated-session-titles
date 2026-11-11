@@ -122,6 +122,14 @@ npm publish                               # 8. 发布（无 scope 包默认 publ
 npm view dsh-dated-session-titles version # 9. 确认线上版本
 ```
 
+发布后说明：npm 11.19+ 默认走**分阶段发布（staged publishing）**。终端会引导你在浏览器里完成 2FA，之后 registry 先出现一个 `0.0.0-stage` 占位版本，真正的版本通常 1-3 分钟后才生效——这期间 `npm view` 只看到占位版是正常现象，别以为发失败了。
+
+```bash
+# 等一两分钟再确认
+npm view dsh-dated-session-titles version    # 变成 0.2.x 即成功
+curl -s https://registry.npmjs.org/dsh-dated-session-titles | grep -o '"latest":"[^"]*"'
+```
+
 几点约束：
 
 - **同版本号不能覆盖发布**，任何改动都要先升版本；
