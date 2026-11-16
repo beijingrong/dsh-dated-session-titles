@@ -8,6 +8,7 @@ import {
   sessionDate,
   systemPrompt,
   titleToolDefinition,
+  titleRequestMessage,
   userInput,
 } from '../index.js';
 
@@ -93,5 +94,14 @@ assert.deepEqual(renamed, [
   '2026-10-01 旧日期：保留',
   '2026-11-10 排查：登录页报错',
 ]);
+
+// --- logged title request ------------------------------------------------
+// DSH v4 refuses a message without a producer-owned source kind, so the audit
+// record must carry the same identity the shipped provider logs.
+assert.deepEqual(titleRequestMessage('这是提示'), {
+  role: 'user',
+  content: [{ type: 'text', text: '这是提示' }],
+  source: { kind: 'dsh-session-title-llm' },
+});
 
 console.log('naming.test.mjs: all assertions passed');

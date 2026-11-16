@@ -1,6 +1,6 @@
 {
   "name": "dsh-dated-session-titles",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "DSH bundle: session titles shaped YYYY-MM-DD 分类：简短描述, with categories chosen from the conversation and an on-demand set_session_title tool.",
   "type": "module",
   "main": "index.js",

@@ -242,6 +242,23 @@ function requestSignal(signal, timeoutMs) {
 }
 
 /**
+ * Build the user message logged with the title request. DSH v4 admits a message
+ * into the durable log only when it carries a producer-owned source kind, and a
+ * requested title must replay as one user-role text message sourced exactly
+ * `dsh-session-title-llm`; a bare `{ role, content }` record makes the whole
+ * session unreadable.
+ * @param {string} input - framed title input.
+ * @returns the logged request message.
+ */
+function titleRequestMessage(input) {
+  return {
+    role: 'user',
+    content: [{ type: 'text', text: input }],
+    source: { kind: 'dsh-session-title-llm' },
+  };
+}
+
+/**
  * Call the session route once and assemble its text.
  * @returns {Promise<{text: string}>} the assembled assistant text.
  */
@@ -252,7 +269,7 @@ async function generateText(ctx, config, request, prepared) {
     const effort = model?.reasoning?.efforts?.[0]?.id;
     return effort === undefined ? controls : { ...controls, reasoningEffort: effort };
   });
-  const messages = [{ role: 'user', content: [{ type: 'text', text: prepared.input }] }];
+  const messages = [titleRequestMessage(prepared.input)];
   const options = {
     ...call.config,
     messages,
@@ -404,4 +421,5 @@ export {
   normalizeCategory,
   normalizeDescription,
   titleToolDefinition,
+  titleRequestMessage,
 };

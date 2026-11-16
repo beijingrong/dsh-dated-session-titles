@@ -64,6 +64,7 @@ git clone https://github.com/beijingrong/dsh-dated-session-titles
 - **命名节奏**：默认每条用户消息触发一次很小的旁路请求（deepseek-flash 通常 1-2 秒），不占用主回复的 token 和时延；觉得标题变动太频繁就切 `first-prompt`。
 - **钉住**：手动改名（无论是你还是 `set_session_title` 工具）会把标题标记为用户来源，本会话不再自动改名。
 - **失败**：超时、模型输出非法、路由不存在都只保留兜底标题（首条消息前几个字），不会重试、不会报错。
+- **审计记录**：`session/title-llm-request` 里的消息带 `source.kind = 'dsh-session-title-llm'`。DSH v4 要求日志消息有生产者来源，缺了会让整份会话判为损坏、打不开（0.2.2 修复）。
 - **长度**：整条标题一般 30 字以内，远低于标题服务的 80 字节默认上限；本 bundle 把它调到了 120 字节。
 
 ## agent 工具：`set_session_title`
